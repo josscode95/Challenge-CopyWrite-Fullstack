@@ -1,11 +1,24 @@
 
+const { Search } = require('../models/search');
+const search = new Search();
+
 const getReverseFn = (req, res) => {
   const { text } = req.query
   const response = text.split("").reverse().join("")
-  if( text === response ) return res.json({text:response, "palindrome": true})
-  res.json({text:response})
+  if( text === response ){
+    const resp = search.addSearch({text:response, "palindrome": true})
+    return res.json(resp)
+  }
+  const resp = search.addSearch({text:response})
+  res.json(resp)
+}
+
+const allSearch = (req, res) => {
+  const resp = search.getSearch()
+  res.json(resp)
 }
 
 module.exports = {
-  getReverseFn
+  getReverseFn,
+  allSearch
 }
