@@ -25,22 +25,43 @@ function App() {
       console.log(error.response.data)
     }
   }
-  console.log(stateItem)
+
   return (
-    <>
-      <div className="App">
-        <form onSubmit={ handleSubmit }>
-          <input 
+    <div className='container'>
+      <form onSubmit={ handleSubmit }>
+        <div className="input-group mb-3 mt-3">
+          <input
             type="text"
+            className="form-control"
+            placeholder="Enter a new text"
+            aria-label="Recipient's username"
+            aria-describedby="button-addon2" 
             value={ state }
-            placeholder='Enter a new text'
             onChange={e => setState(e.target.value)}
           />
-          <button type='submit'>send</button>
-        </form>
-      </div>
-
-    </>
+          <button className="btn btn-outline-secondary" type="submit" id="button-addon2">send</button>
+        </div>
+      </form>
+      <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Textos enviados</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            stateItem.length > 0 &&
+            stateItem.map(({ text }, index) => (
+              <tr key={ index }>
+                <th scope="row">{ index + 1 }</th>
+                <td>{ text }</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
   );
 }
 
