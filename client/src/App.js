@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 function App() {
 
   const [ state, setState ] = useState('')
   const [ stateItem, setStateItem ] = useState([])
+  const stateText = useSelector(state => state.txtSend)
+  console.log(stateText);
 
   useEffect(() => {
     getData()
@@ -13,7 +15,7 @@ function App() {
 
   const getData = async() => {
     const resp = await axios.get('http://localhost:4444/iecho/all')
-    setStateItem( resp.data )
+    setStateItem( resp.data.reverse() )
   }
 
   const handleSubmit = async( e ) => {
