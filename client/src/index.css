@@ -11,3 +11,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+*{
+  margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+}
+
+html, body{
+  height: 100%;
+}
+
+.formContainer{
+  padding: 1rem 20rem 1rem 20rem;
+  background-color: red;
+}
+
+.formContainer div input{
+  margin-right: 1rem;
+}
+
+.formContainer div input:focus{
+  outline: none !important;
+  border: none !important;
+}
+
+.formContainer div button{
+  outline: none;
+  border: none;
+  padding: .5rem 1.5rem;
+  background-color: #4900ff;
+}
+
+.tableContainer{
+  margin: auto;
+}

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getDatting } from "../src/redux/features/textSend";
 import { ShowTable } from './components/ShowTable';
 import { SubmitContainer } from './components/SubmitContainer';
+import "./index.css"
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
   }, [ dispatch ])
 
   return (
-    <div className='container'>
+    <div>
       <SubmitContainer />
       <ShowTable />
     </div>
