@@ -5,7 +5,7 @@ export const getDatting = createAsyncThunk(
   'projectReducer/getDatting',
   async(args, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('http://localhost:4444/iecho/all')
+      const { data } = await axios.get('https://rest-copywrite.herokuapp.com/iecho/all')
       return data.reverse();
     } catch (error) {
       rejectWithValue(error.response.data)
@@ -17,7 +17,7 @@ export const postData = createAsyncThunk(
   'projectReducer/postData',
   async(args, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`http://localhost:4444/iecho?text=${ args }`)
+      const { data } = await axios.get(`https://rest-copywrite.herokuapp.com/iecho?text=${ args }`)
       return data.reverse()
     } catch (error) {
       rejectWithValue(error.response.data)
