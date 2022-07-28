@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDatting, postData } from "../src/redux/features/textSend";
 
 function App() {
 
   const [ state, setState ] = useState('')
-  const [ stateItem, setStateItem ] = useState([])
-  const stateText = useSelector(state => state.txtSend)
-  console.log(stateText);
+  const dispatch = useDispatch();
+  const texts = useSelector(store => store.txtSend.texts) 
 
   useEffect(() => {
-    getData()
-  }, [ setStateItem, state ])
-
-  const getData = async() => {
-    const resp = await axios.get('http://localhost:4444/iecho/all')
-    setStateItem( resp.data.reverse() )
-  }
+    dispatch( getDatting() )
+  }, [ dispatch ])
 
   const handleSubmit = async( e ) => {
     try {
       e.preventDefault();
-      await axios.get(`http://localhost:4444/iecho?text=${ state }`)
+      dispatch( postData( state ) )
       setState('')
     } catch (error) {
       console.log(error.response.data)
@@ -53,8 +47,8 @@ function App() {
         </thead>
         <tbody>
           {
-            stateItem.length > 0 &&
-            stateItem.map(({ text }, index) => (
+            texts.length > 0 &&
+            texts.map(({ text }, index) => (
               <tr key={ index }>
                 <th scope="row">{ index + 1 }</th>
                 <td>{ text }</td>
